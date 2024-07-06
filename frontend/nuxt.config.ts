@@ -7,6 +7,8 @@ export default defineNuxtConfig({
       'Open Sans': true,
       'Hanken Grotesk': true,
       'Nunito': true,
+      'Montserrat': true,
+      'Roboto': true
     }
   }
 })
