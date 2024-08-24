@@ -12,9 +12,7 @@ use Illuminate\Support\Facades\Gate;
 
 class MessageController extends Controller
 {
-    public function __construct(protected MessageService $messageService)
-    {
-    }
+    public function __construct(protected MessageService $messageService) {}
 
     public function index(): JsonResponse
     {

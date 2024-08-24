@@ -14,10 +14,9 @@ class SharedFilePolicy
         return $user->hasPermission('read shared files');
     }
 
-
     public function view(User $user, SharedFile $sharedFile): bool
     {
-        if (!$user->hasPermission('read shared files')) {
+        if (! $user->hasPermission('read shared files')) {
             return false;
         }
 
@@ -36,10 +35,9 @@ class SharedFilePolicy
         return false;
     }
 
-
     public function create(User $user, Group $group): bool
     {
-        if (!$user->hasPermission('create shared files')) {
+        if (! $user->hasPermission('create shared files')) {
             return false;
         }
 
@@ -60,7 +58,7 @@ class SharedFilePolicy
 
     public function update(User $user, SharedFile $sharedFile): bool
     {
-        if (!$user->hasPermission('update shared files')) {
+        if (! $user->hasPermission('update shared files')) {
             return false;
         }
 
@@ -73,7 +71,7 @@ class SharedFilePolicy
 
     public function delete(User $user, SharedFile $sharedFile): bool
     {
-        if (!$user->hasPermission('delete shared files')) {
+        if (! $user->hasPermission('delete shared files')) {
             return false;
         }
 

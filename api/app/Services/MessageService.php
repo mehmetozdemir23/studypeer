@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Services;
+
 use App\Models\Message;
 use App\Models\Role;
 use App\Models\User;
@@ -18,7 +19,7 @@ class MessageService
                 $q->whereIn('id', $createdOrTutoredGroupIds);
             })->get();
 
-        } else if ($user->hasRole(Role::STUDENT)) {
+        } elseif ($user->hasRole(Role::STUDENT)) {
             $userGroupIds = $user->groups()->pluck('id');
 
             return Message::whereHas('group', function ($q) use ($userGroupIds) {
@@ -39,7 +40,7 @@ class MessageService
         return $message->update($data);
     }
 
-    public function delete(Message $message): bool|null
+    public function delete(Message $message): ?bool
     {
         return $message->delete();
     }

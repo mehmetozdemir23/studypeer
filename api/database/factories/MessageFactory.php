@@ -17,7 +17,7 @@ class MessageFactory extends Factory
             'sender_id' => User::factory(),
             'receiver_id' => User::factory(),
             'group_id' => Group::factory(),
-            'content' => fake()->text()
+            'content' => fake()->text(),
         ];
     }
 }

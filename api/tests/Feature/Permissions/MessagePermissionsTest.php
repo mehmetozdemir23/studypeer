@@ -1,4 +1,5 @@
 <?php
+
 use App\Models\Group;
 use App\Models\Message;
 use App\Models\Permission;
@@ -16,21 +17,21 @@ beforeEach(function () {
         $readMessagesPermission,
         $createMessagesPermission,
         $updateMessagesPermission,
-        $deleteMessagesPermission
+        $deleteMessagesPermission,
     ]);
 
     $this->attachPermissions($this->tutorRole, [
         $readMessagesPermission,
         $createMessagesPermission,
         $updateMessagesPermission,
-        $deleteMessagesPermission
+        $deleteMessagesPermission,
     ]);
 
     $this->attachPermissions($this->studentRole, [
         $readMessagesPermission,
         $createMessagesPermission,
         $updateMessagesPermission,
-        $deleteMessagesPermission
+        $deleteMessagesPermission,
     ]);
 });
 
@@ -112,7 +113,7 @@ it('allows a tutor to read messages only in groups they created or tutor', funct
     $messages = [
         'created' => Message::factory()->for($createdGroup, 'group')->create(),
         'tutored' => Message::factory()->for($tutoredGroup, 'group')->create(),
-        'unrelated' => Message::factory()->for($unrelatedGroup, 'group')->create()
+        'unrelated' => Message::factory()->for($unrelatedGroup, 'group')->create(),
     ];
 
     $response = $this->actingAs($this->tutor)->get('api/messages');
@@ -132,7 +133,7 @@ it('allows a tutor to read a specific message only in a group they created or tu
     $messages = [
         'created' => Message::factory()->for($createdGroup, 'group')->create(),
         'tutored' => Message::factory()->for($tutoredGroup, 'group')->create(),
-        'unrelated' => Message::factory()->for($unrelatedGroup, 'group')->create()
+        'unrelated' => Message::factory()->for($unrelatedGroup, 'group')->create(),
     ];
 
     $response = $this->actingAs($this->tutor)->get("/api/messages/{$messages['created']->id}");
@@ -156,7 +157,7 @@ it('allows a tutor to create a new message only in a group they created or tutor
     $messages = [
         'created' => Message::factory()->for($createdGroup, 'group')->make()->toArray(),
         'tutored' => Message::factory()->for($tutoredGroup, 'group')->make()->toArray(),
-        'unrelated' => Message::factory()->for($unrelatedGroup, 'group')->make()->toArray()
+        'unrelated' => Message::factory()->for($unrelatedGroup, 'group')->make()->toArray(),
     ];
 
     $response = $this->actingAs($this->tutor)->post('/api/messages', $messages['created']);

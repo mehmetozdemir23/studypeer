@@ -1,4 +1,5 @@
 <?php
+
 use App\Models\Group;
 use App\Models\Permission;
 use App\Models\SharedFile;
@@ -19,21 +20,21 @@ beforeEach(function () {
         $readSharedFilesPermission,
         $createSharedFilesPermission,
         $updateSharedFilesPermission,
-        $deleteSharedFilesPermission
+        $deleteSharedFilesPermission,
     ]);
 
     $this->attachPermissions($this->tutorRole, [
         $readSharedFilesPermission,
         $createSharedFilesPermission,
         $updateSharedFilesPermission,
-        $deleteSharedFilesPermission
+        $deleteSharedFilesPermission,
     ]);
 
     $this->attachPermissions($this->studentRole, [
         $readSharedFilesPermission,
         $createSharedFilesPermission,
         $updateSharedFilesPermission,
-        $deleteSharedFilesPermission
+        $deleteSharedFilesPermission,
     ]);
 });
 
@@ -53,7 +54,6 @@ it('allows an admin to read a specific shared file', function () {
     $response->assertOk()
         ->assertJsonFragment(['id' => $sharedFile->id]);
 });
-
 
 it('allows an admin to create a new shared file', function () {
     Storage::fake();
@@ -95,7 +95,7 @@ it('allows an admin to delete a shared file they uploaded', function () {
     Storage::fake();
     $sharedFile = SharedFile::factory()->for($this->admin, 'uploader')
         ->create([
-            'file_path' => UploadedFile::fake()->create(Str::random(), 200, 'pdf')->store('shared_files')
+            'file_path' => UploadedFile::fake()->create(Str::random(), 200, 'pdf')->store('shared_files'),
         ]);
 
     $response = $this->actingAs($this->admin)->delete("/api/shared-files/{$sharedFile->id}");
@@ -124,7 +124,7 @@ it('allows a tutor to read shared files only in groups they created or tutor', f
     $sharedFiles = [
         'created' => SharedFile::factory()->for($createdGroup, 'group')->create(),
         'tutored' => SharedFile::factory()->for($tutoredGroup, 'group')->create(),
-        'unrelated' => SharedFile::factory()->for($unrelatedGroup, 'group')->create()
+        'unrelated' => SharedFile::factory()->for($unrelatedGroup, 'group')->create(),
     ];
 
     $response = $this->actingAs($this->tutor)->get('api/shared-files');
@@ -144,7 +144,7 @@ it('allows a tutor to read a specific shared file only in a group they created o
     $sharedFiles = [
         'created' => SharedFile::factory()->for($createdGroup, 'group')->create(),
         'tutored' => SharedFile::factory()->for($tutoredGroup, 'group')->create(),
-        'unrelated' => SharedFile::factory()->for($unrelatedGroup, 'group')->create()
+        'unrelated' => SharedFile::factory()->for($unrelatedGroup, 'group')->create(),
     ];
 
     $response = $this->actingAs($this->tutor)->get("/api/shared-files/{$sharedFiles['created']->id}");
@@ -158,7 +158,6 @@ it('allows a tutor to read a specific shared file only in a group they created o
     $response = $this->actingAs($this->tutor)->get("/api/shared-files/{$sharedFiles['unrelated']->id}");
     $response->assertStatus(Response::HTTP_FORBIDDEN);
 });
-
 
 it('allows a tutor to create a new shared file only in a group they created or tutor', function () {
     Storage::fake();
@@ -213,7 +212,7 @@ it('allows a tutor to delete a shared file they uploaded', function () {
 
     $sharedFile = SharedFile::factory()->for($this->tutor, 'uploader')
         ->create([
-            'file_path' => UploadedFile::fake()->create(Str::random(), 200, 'pdf')->store('shared_files')
+            'file_path' => UploadedFile::fake()->create(Str::random(), 200, 'pdf')->store('shared_files'),
         ]);
 
     $response = $this->actingAs($this->tutor)->delete("/api/shared-files/{$sharedFile->id}");
@@ -318,7 +317,7 @@ it('allows a student to delete a shared file they uploaded', function () {
 
     $sharedFile = SharedFile::factory()->for($this->student, 'uploader')
         ->create([
-            'file_path' => UploadedFile::fake()->create(Str::random(), 200, 'pdf')->store('shared_files')
+            'file_path' => UploadedFile::fake()->create(Str::random(), 200, 'pdf')->store('shared_files'),
         ]);
 
     $response = $this->actingAs($this->student)->delete("/api/shared-files/{$sharedFile->id}");

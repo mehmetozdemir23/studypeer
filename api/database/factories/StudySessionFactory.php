@@ -13,7 +13,7 @@ class StudySessionFactory extends Factory
             'group_id' => Group::factory(),
             'title' => fake()->sentence(),
             'description' => fake()->sentence(),
-            'scheduled_at' => fake()->dateTimeBetween('now', '+1 year')->format('Y-m-d H:i:s')
+            'scheduled_at' => fake()->dateTimeBetween('now', '+1 year')->format('Y-m-d H:i:s'),
         ];
     }
 }

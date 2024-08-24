@@ -18,7 +18,7 @@ class StoreGroupRequest extends FormRequest
         return [
             'creator_id' => ['required', 'exists:users,id'],
             'name' => ['required', 'string', 'min:8', 'max:100'],
-            'description' => ['required', 'string', 'min:8', 'max:200']
+            'description' => ['required', 'string', 'min:8', 'max:200'],
         ];
     }
 }

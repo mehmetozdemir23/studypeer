@@ -1,4 +1,5 @@
 <?php
+
 use App\Models\User;
 
 it('registers user', function () {
@@ -7,7 +8,7 @@ it('registers user', function () {
         'lastname' => 'testlastname',
         'email' => 'testuser@example.com',
         'password' => 'Testpassword123*',
-        'password_confirmation' => 'Testpassword123*'
+        'password_confirmation' => 'Testpassword123*',
     ];
 
     $response = $this->post('/register', $userData);
@@ -22,12 +23,12 @@ it('registers user', function () {
 it('logs in user', function () {
     $user = User::factory()->create([
         'email' => 'testuser@example.com',
-        'password' => 'testpassword'
+        'password' => 'testpassword',
     ]);
 
     $response = $this->post('/login', [
         'email' => 'testuser@example.com',
-        'password' => 'testpassword'
+        'password' => 'testpassword',
     ]);
 
     $response->assertStatus(200);

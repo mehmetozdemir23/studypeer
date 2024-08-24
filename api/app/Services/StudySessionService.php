@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Services;
+
 use App\Models\Role;
 use App\Models\StudySession;
 use App\Models\User;
@@ -28,6 +29,7 @@ class StudySessionService
             return StudySession::all();
         }
     }
+
     public function create(array $data): StudySession
     {
         return StudySession::create($data);
@@ -38,7 +40,7 @@ class StudySessionService
         return $studySession->update($data);
     }
 
-    public function delete(StudySession $studySession): bool|null
+    public function delete(StudySession $studySession): ?bool
     {
         return $studySession->delete();
     }

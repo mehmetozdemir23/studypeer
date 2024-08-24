@@ -1,8 +1,8 @@
 <?php
 
 use App\Models\Group;
-use App\Models\User;
 use App\Models\Permission;
+use App\Models\User;
 use Symfony\Component\HttpFoundation\Response;
 
 beforeEach(function () {

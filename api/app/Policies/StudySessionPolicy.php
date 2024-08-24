@@ -16,7 +16,7 @@ class StudySessionPolicy
 
     public function view(User $user, StudySession $studySession): bool
     {
-        if (!$user->hasPermission('read study sessions')) {
+        if (! $user->hasPermission('read study sessions')) {
             return false;
         }
 
@@ -37,7 +37,7 @@ class StudySessionPolicy
 
     public function create(User $user, Group $group): bool
     {
-        if (!$user->hasPermission('create study sessions')) {
+        if (! $user->hasPermission('create study sessions')) {
             return false;
         }
 
@@ -54,7 +54,7 @@ class StudySessionPolicy
 
     public function update(User $user, StudySession $studySession): bool
     {
-        if (!$user->hasPermission('update study sessions')) {
+        if (! $user->hasPermission('update study sessions')) {
             return false;
         }
 
@@ -71,7 +71,7 @@ class StudySessionPolicy
 
     public function delete(User $user, StudySession $studySession): bool
     {
-        if (!$user->hasPermission('update study sessions')) {
+        if (! $user->hasPermission('update study sessions')) {
             return false;
         }
 

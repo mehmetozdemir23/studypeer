@@ -18,7 +18,7 @@ class SharedFileFactory extends Factory
             'uploader_id' => User::factory(),
             'name' => fake()->sentence(),
             'description' => fake()->text(),
-            'file_path' => fake()->filePath()
+            'file_path' => fake()->filePath(),
         ];
     }
 }

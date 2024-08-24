@@ -39,10 +39,10 @@ class RolesAndPermissionsSeeder extends Seeder
             'delete shared files',
             'send messages',
             'view notifications',
-            'submit support tickets'
+            'submit support tickets',
         ];
 
-        $permissionRows = array_map(fn($permission) => ['id' => Str::uuid(), 'name' => $permission], $permissions);
+        $permissionRows = array_map(fn ($permission) => ['id' => Str::uuid(), 'name' => $permission], $permissions);
         Permission::insert($permissionRows);
 
         // Assign permissions to roles
@@ -65,7 +65,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'delete shared files',
             'send messages',
             'view notifications',
-            'submit support tickets'
+            'submit support tickets',
         ])->pluck('id'));
 
         $tutor->permissions()->attach(Permission::whereIn('name', [
@@ -83,7 +83,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'delete shared files',
             'send messages',
             'view notifications',
-            'submit support tickets'
+            'submit support tickets',
         ])->pluck('id'));
 
         $student->permissions()->attach(Permission::whereIn('name', [
@@ -92,7 +92,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'read shared files',
             'send messages',
             'view notifications',
-            'submit support tickets'
+            'submit support tickets',
         ])->pluck('id'));
     }
 }

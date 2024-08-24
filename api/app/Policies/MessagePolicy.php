@@ -6,7 +6,6 @@ use App\Models\Group;
 use App\Models\Message;
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class MessagePolicy
 {
@@ -17,7 +16,7 @@ class MessagePolicy
 
     public function view(User $user, Message $message): bool
     {
-        if (!$user->hasPermission('read messages')) {
+        if (! $user->hasPermission('read messages')) {
             return false;
         }
 
@@ -38,7 +37,7 @@ class MessagePolicy
 
     public function create(User $user, Group $group): bool
     {
-        if (!$user->hasPermission('create messages')) {
+        if (! $user->hasPermission('create messages')) {
             return false;
         }
 
@@ -59,7 +58,7 @@ class MessagePolicy
 
     public function update(User $user, Message $message): bool
     {
-        if (!$user->hasPermission('update messages')) {
+        if (! $user->hasPermission('update messages')) {
             return false;
         }
 
@@ -72,7 +71,7 @@ class MessagePolicy
 
     public function delete(User $user, Message $message): bool
     {
-        if (!$user->hasPermission('delete messages')) {
+        if (! $user->hasPermission('delete messages')) {
             return false;
         }
 

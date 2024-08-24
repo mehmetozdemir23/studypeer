@@ -12,7 +12,7 @@ class GroupFactory extends Factory
         return [
             'creator_id' => User::factory(),
             'name' => fake()->sentence(),
-            'description' => fake()->sentence()
+            'description' => fake()->sentence(),
         ];
     }
 }

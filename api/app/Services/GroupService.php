@@ -6,7 +6,6 @@ use App\Models\Group;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Auth;
 
 class GroupService
 {
@@ -29,7 +28,7 @@ class GroupService
         return $group->update($data);
     }
 
-    public function delete(Group $group): bool|null
+    public function delete(Group $group): ?bool
     {
         return $group->delete();
     }

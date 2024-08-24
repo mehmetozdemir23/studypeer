@@ -173,7 +173,7 @@ it('allows a student to read a specific group they belong to', function () {
     $response->assertJsonFragment(['id' => $group->id]);
 });
 
-it("does not allow a student to read a specific group they do not belong to", function () {
+it('does not allow a student to read a specific group they do not belong to', function () {
     $group = Group::factory()->create();
 
     $response = $this->actingAs($this->student)->get("/api/groups/{$group->id}");

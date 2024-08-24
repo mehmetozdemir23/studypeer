@@ -17,6 +17,7 @@ class SharedFile extends Model
     {
         return $this->belongsTo(Group::class);
     }
+
     public function uploader(): BelongsTo
     {
         return $this->belongsTo(User::class);

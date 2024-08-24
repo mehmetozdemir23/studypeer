@@ -4,20 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreStudySessionRequest;
 use App\Http\Requests\UpdateStudySessionRequest;
-use App\Models\Role;
 use App\Models\StudySession;
 use App\Services\StudySessionService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class StudySessionController extends Controller
 {
-    public function __construct(protected StudySessionService $studySessionService)
-    {
-    }
+    public function __construct(protected StudySessionService $studySessionService) {}
+
     public function index(): JsonResponse
     {
         Gate::authorize('viewAny', StudySession::class);

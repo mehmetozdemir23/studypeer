@@ -14,10 +14,10 @@ class Role extends Model
     protected $fillable = ['name'];
 
     public const string ADMIN = 'admin';
+
     public const string TUTOR = 'tutor';
+
     public const string STUDENT = 'student';
-
-
 
     public function permissions(): BelongsToMany
     {

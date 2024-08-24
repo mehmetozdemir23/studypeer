@@ -8,14 +8,12 @@ use App\Models\Resource;
 use App\Models\SharedFile;
 use App\Services\SharedFileService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class SharedFileController extends Controller
 {
-    public function __construct(protected SharedFileService $sharedFileService)
-    {
-    }
+    public function __construct(protected SharedFileService $sharedFileService) {}
+
     public function index(): JsonResponse
     {
         Gate::authorize('viewAny', SharedFile::class);

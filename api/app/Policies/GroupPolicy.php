@@ -15,7 +15,7 @@ class GroupPolicy
 
     public function view(User $user, Group $group): bool
     {
-        if (!$user->hasPermission('read groups')) {
+        if (! $user->hasPermission('read groups')) {
             return false;
         }
 

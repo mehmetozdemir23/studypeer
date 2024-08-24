@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
             'firstname' => 'mehmet',
             'lastname' => 'ozdemir',
             'email' => 'admin@studypeer.com',
-            'password' => bcrypt('adminpassword')
+            'password' => bcrypt('adminpassword'),
         ]);
         $adminRole = Role::where('name', 'admin')->first();
         $admin->roles()->attach($adminRole);

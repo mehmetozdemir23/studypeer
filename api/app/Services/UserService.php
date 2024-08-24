@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+
 class UserService
 {
     public function getForUser(User $user): Collection
@@ -28,7 +29,7 @@ class UserService
         return $user->update($data);
     }
 
-    public function delete(User $user): bool|null
+    public function delete(User $user): ?bool
     {
         return $user->delete();
     }

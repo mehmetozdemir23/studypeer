@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Services;
-use App\Models\Message;
-use App\Models\Resource;
+
 use App\Models\Role;
 use App\Models\SharedFile;
 use App\Models\User;
@@ -22,7 +21,7 @@ class SharedFileService
                 $q->whereIn('id', $createdOrTutoredGroupIds);
             })->get();
 
-        } else if ($user->hasRole(Role::STUDENT)) {
+        } elseif ($user->hasRole(Role::STUDENT)) {
             $userGroupIds = $user->groups()->pluck('id');
 
             return SharedFile::whereHas('group', function ($q) use ($userGroupIds) {
@@ -53,7 +52,7 @@ class SharedFileService
         return $sharedFile->update($data);
     }
 
-    public function delete(SharedFile $sharedFile): bool|null
+    public function delete(SharedFile $sharedFile): ?bool
     {
         Storage::delete($sharedFile->file_path);
 

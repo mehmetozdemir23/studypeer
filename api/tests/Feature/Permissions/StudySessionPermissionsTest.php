@@ -17,14 +17,14 @@ beforeEach(function () {
         $readStudySessionsPermission,
         $createStudySessionsPermission,
         $updateStudySessionsPermission,
-        $deleteStudySessionsPermission
+        $deleteStudySessionsPermission,
     ]);
 
     $this->attachPermissions($this->tutorRole, [
         $readStudySessionsPermission,
         $createStudySessionsPermission,
         $updateStudySessionsPermission,
-        $deleteStudySessionsPermission
+        $deleteStudySessionsPermission,
     ]);
 
     $this->attachPermissions($this->studentRole, [
@@ -91,10 +91,10 @@ it('allows a tutor to read study sessions only in groups they created or tutor',
     $studySessions = [
         'created' => StudySession::factory()->for($createdGroup, 'group')->create(),
         'tutored' => StudySession::factory()->for($tutoredGroup, 'group')->create(),
-        'unrelated' => StudySession::factory()->for($unrelatedGroup, 'group')->create()
+        'unrelated' => StudySession::factory()->for($unrelatedGroup, 'group')->create(),
     ];
 
-    $response = $this->actingAs($this->tutor)->get("/api/study-sessions");
+    $response = $this->actingAs($this->tutor)->get('/api/study-sessions');
 
     $response->assertOk()
         ->assertJsonFragment(['id' => $studySessions['created']->id])
@@ -111,7 +111,7 @@ it('allows a tutor to read a specific study session only in a group they created
     $studySessions = [
         'created' => StudySession::factory()->for($createdGroup, 'group')->create(),
         'tutored' => StudySession::factory()->for($tutoredGroup, 'group')->create(),
-        'unrelated' => StudySession::factory()->for($unrelatedGroup, 'group')->create()
+        'unrelated' => StudySession::factory()->for($unrelatedGroup, 'group')->create(),
     ];
 
     $response = $this->actingAs($this->tutor)->get("/api/study-sessions/{$studySessions['created']->id}");
@@ -135,7 +135,7 @@ it('allows a tutor to create a new study session only in a group they created or
     $studySessions = [
         'created' => StudySession::factory()->for($createdGroup, 'group')->make()->toArray(),
         'tutored' => StudySession::factory()->for($tutoredGroup, 'group')->make()->toArray(),
-        'unrelated' => StudySession::factory()->for($unrelatedGroup, 'group')->make()->toArray()
+        'unrelated' => StudySession::factory()->for($unrelatedGroup, 'group')->make()->toArray(),
     ];
 
     $response = $this->actingAs($this->tutor)->post('/api/study-sessions', $studySessions['created']);
@@ -159,13 +159,13 @@ it('allows a tutor to update any existing study session only in a group they cre
     $existingStudySessions = [
         'created' => StudySession::factory()->for($createdGroup, 'group')->create(),
         'tutored' => StudySession::factory()->for($tutoredGroup, 'group')->create(),
-        'unrelated' => StudySession::factory()->for($unrelatedGroup, 'group')->create()
+        'unrelated' => StudySession::factory()->for($unrelatedGroup, 'group')->create(),
     ];
 
     $updatedStudySessions = [
         'created' => [...$existingStudySessions['created']->toArray(), 'title' => 'newstudysessiontitle1'],
         'tutored' => [...$existingStudySessions['tutored']->toArray(), 'title' => 'newstudysessiontitle2'],
-        'unrelated' => [...$existingStudySessions['unrelated']->toArray(), 'title' => 'newstudysessiontitle3']
+        'unrelated' => [...$existingStudySessions['unrelated']->toArray(), 'title' => 'newstudysessiontitle3'],
     ];
 
     $response = $this->actingAs($this->tutor)->put("/api/study-sessions/{$existingStudySessions['created']->id}", $updatedStudySessions['created']);
@@ -182,7 +182,6 @@ it('allows a tutor to update any existing study session only in a group they cre
     $response->assertStatus(Response::HTTP_FORBIDDEN);
 });
 
-
 it('allows a tutor to delete a study session only in a group they created or tutor', function () {
     $createdGroup = Group::factory()->for($this->tutor, 'creator')->create();
     $tutoredGroup = Group::factory()->create();
@@ -192,7 +191,7 @@ it('allows a tutor to delete a study session only in a group they created or tut
     $studySessions = [
         'created' => StudySession::factory()->for($createdGroup, 'group')->create(),
         'tutored' => StudySession::factory()->for($tutoredGroup, 'group')->create(),
-        'unrelated' => StudySession::factory()->for($unrelatedGroup, 'group')->create()
+        'unrelated' => StudySession::factory()->for($unrelatedGroup, 'group')->create(),
     ];
 
     $response = $this->actingAs($this->tutor)->delete("/api/study-sessions/{$studySessions['created']->id}");

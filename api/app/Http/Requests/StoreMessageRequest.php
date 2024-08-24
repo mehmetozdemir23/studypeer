@@ -22,7 +22,7 @@ class StoreMessageRequest extends FormRequest
             'sender_id' => ['required', 'exists:users,id'],
             'receiver_id' => ['required', 'exists:users,id'],
             'group_id' => ['required', 'exists:groups,id'],
-            'content' => ['required', 'string']
+            'content' => ['required', 'string'],
         ];
     }
 }

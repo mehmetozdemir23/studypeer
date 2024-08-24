@@ -22,7 +22,7 @@ class StoreStudySessionRequest extends FormRequest
             'group_id' => ['required', 'exists:groups,id'],
             'title' => ['required', 'string', 'min:8', 'max:100'],
             'description' => ['required', 'string', 'min:8', 'max:200'],
-            'scheduled_at' => ['required', 'date_format:Y-m-d H:i:s', 'after:now']
+            'scheduled_at' => ['required', 'date_format:Y-m-d H:i:s', 'after:now'],
         ];
     }
 }

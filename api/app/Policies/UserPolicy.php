@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class UserPolicy
 {
@@ -15,7 +14,7 @@ class UserPolicy
 
     public function view(User $user, User $model): bool
     {
-        if (!$user->hasPermission('read users')) {
+        if (! $user->hasPermission('read users')) {
             return false;
         }
 
@@ -41,7 +40,7 @@ class UserPolicy
 
     public function update(User $user, User $model): bool
     {
-        if (!$user->hasPermission('update users')) {
+        if (! $user->hasPermission('update users')) {
             return false;
         }
 

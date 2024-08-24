@@ -2,15 +2,15 @@
 
 namespace Tests;
 
-use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
-use Tests\TestCase;
 
 class PermissionTestCase extends TestCase
 {
     protected Role $adminRole;
+
     protected Role $tutorRole;
+
     protected Role $studentRole;
 
     protected function setUp(): void
@@ -31,7 +31,7 @@ class PermissionTestCase extends TestCase
 
     protected function attachPermissions(Role $role, array $permissions)
     {
-        $role->permissions()->attach(array_map(fn($permission) => $permission->id, $permissions));
+        $role->permissions()->attach(array_map(fn ($permission) => $permission->id, $permissions));
     }
 
     private function createUserWithRole(Role $role): User
