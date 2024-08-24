@@ -9,4 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class Permission extends Model
 {
     use HasFactory, HasUuids;
+
+    protected $fillable = ['name'];
 }

@@ -11,6 +11,14 @@ class Role extends Model
 {
     use HasFactory, HasUuids;
 
+    protected $fillable = ['name'];
+
+    public const string ADMIN = 'admin';
+    public const string TUTOR = 'tutor';
+    public const string STUDENT = 'student';
+
+
+
     public function permissions(): BelongsToMany
     {
         return $this->belongsToMany(Permission::class);
